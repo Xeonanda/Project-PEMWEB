@@ -33,7 +33,7 @@
                     <a class="nav-link" href="{{ route('pemilik') }}">Pemilik</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pasar') }}">Pasar</a>
+                    <a class="nav-link" href="{{ route('pasar.index') }}">Pasar</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('tenants.index') }}">Tenant</a>
@@ -45,7 +45,7 @@
                     <a class="nav-link" href="{{ route('riwayat_iuran') }}">Riwayat Iuran</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pengelola') }}">Pengelola</a>
+                    <a class="nav-link" href="{{ route('pengelola.index') }}">Pengelola</a>
                 </li>
             </ul>
         </nav>
