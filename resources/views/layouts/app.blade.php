@@ -27,13 +27,25 @@
             <!-- Sidebar -->
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link" href="{{ route('konfigurasi') }}">Konfigurasi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('about') }}">About</a>
+                    <a class="nav-link" href="{{ route('pemilik') }}">Pemilik</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                    <a class="nav-link" href="{{ route('pasar') }}">Pasar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('tenant') }}">Tenant</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('riwayat_pemilikan') }}">Riwayat Pemilikan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('riwayat_iuran') }}">Riwayat Iuran</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('pengelola') }}">Pengelola</a>
                 </li>
             </ul>
         </nav>
