@@ -36,10 +36,10 @@
                     <a class="nav-link" href="{{ route('pasar') }}">Pasar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('tenant') }}">Tenant</a>
+                    <a class="nav-link" href="{{ route('tenants.index') }}">Tenant</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('riwayat_pemilikan') }}">Riwayat Pemilikan</a>
+                    <a class="nav-link" href="{{ route('riwayat_pemilikan.index') }}">Riwayat Pemilikan</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('riwayat_iuran') }}">Riwayat Iuran</a>
