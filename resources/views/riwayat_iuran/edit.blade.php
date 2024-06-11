@@ -36,18 +36,18 @@
                         @php
                             $bulan = substr($riwayatIuran->tahun_bulan, 5, 2);
                         @endphp
-                        <option value="01" {{ $bulan == '01' ? 'selected' : '' }}>January</option>
-                        <option value="02" {{ $bulan == '02' ? 'selected' : '' }}>February</option>
-                        <option value="03" {{ $bulan == '03' ? 'selected' : '' }}>March</option>
+                        <option value="01" {{ $bulan == '01' ? 'selected' : '' }}>Januari</option>
+                        <option value="02" {{ $bulan == '02' ? 'selected' : '' }}>Februari</option>
+                        <option value="03" {{ $bulan == '03' ? 'selected' : '' }}>Maret</option>
                         <option value="04" {{ $bulan == '04' ? 'selected' : '' }}>April</option>
-                        <option value="05" {{ $bulan == '05' ? 'selected' : '' }}>May</option>
-                        <option value="06" {{ $bulan == '06' ? 'selected' : '' }}>June</option>
-                        <option value="07" {{ $bulan == '07' ? 'selected' : '' }}>July</option>
-                        <option value="08" {{ $bulan == '08' ? 'selected' : '' }}>August</option>
+                        <option value="05" {{ $bulan == '05' ? 'selected' : '' }}>Mei</option>
+                        <option value="06" {{ $bulan == '06' ? 'selected' : '' }}>Juni</option>
+                        <option value="07" {{ $bulan == '07' ? 'selected' : '' }}>Juli</option>
+                        <option value="08" {{ $bulan == '08' ? 'selected' : '' }}>Agustus</option>
                         <option value="09" {{ $bulan == '09' ? 'selected' : '' }}>September</option>
-                        <option value="10" {{ $bulan == '10' ? 'selected' : '' }}>October</option>
+                        <option value="10" {{ $bulan == '10' ? 'selected' : '' }}>Oktober</option>
                         <option value="11" {{ $bulan == '11' ? 'selected' : '' }}>November</option>
-                        <option value="12" {{ $bulan == '12' ? 'selected' : '' }}>December</option>
+                        <option value="12" {{ $bulan == '12' ? 'selected' : '' }}>Desember</option>
                     </select>
                 </div>
             </div>
