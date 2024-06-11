@@ -30,7 +30,7 @@
                     <a class="nav-link" href="{{ route('konfigurasi.index') }}">Konfigurasi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pemilik') }}">Pemilik</a>
+                    <a class="nav-link" href="{{ route('pemilik.index') }}">Pemilik</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('pasar.index') }}">Pasar</a>

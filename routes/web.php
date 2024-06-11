@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PasarController;
+use App\Http\Controllers\PemilikController;
 use App\Http\Controllers\PengelolaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TenantController;
@@ -10,9 +11,12 @@ use App\Http\Controllers\KonfigurasiController;
 
 Route::get('/', [KonfigurasiController::class, 'index'])->name('konfigurasi');
 
-Route::get('/pemilik', function () {
-    return view('pemilik');
-})->name('pemilik');
+Route::get('/riwayat_iuran', function () {
+    return view('riwayat_iuran');
+})->name('riwayat_iuran');
+
+//Pemilik
+Route::resource('pemilik', PemilikController::class);
 
 
 // Tenant

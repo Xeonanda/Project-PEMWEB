@@ -7,6 +7,7 @@
         <h1 class="mt-4">Edit Pengelola</h1>
         <form action="{{ route('pengelola.update', $pengelola->id) }}" method="POST">
             @csrf
+            @method('PUT')
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -16,13 +17,11 @@
                 </ul>
             </div>
             @endif
-            @method('PUT')
-            
             <div class="form-group">
                 <label for="id_user">ID User</label>
                 <input type="number" name="id_user" class="form-control" value="{{ $pengelola->id_user }}" required>
             </div>
-    
+
             <div class="form-group">
                 <label for="id_pasar">ID Pasar</label>
                 <input type="number" name="id_pasar" class="form-control" value="{{ $pengelola->id_pasar }}" required>
