@@ -42,7 +42,7 @@
                     <a class="nav-link" href="{{ route('riwayat_pemilikan.index') }}">Riwayat Pemilikan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('riwayat_iuran') }}">Riwayat Iuran</a>
+                    <a class="nav-link" href="{{ route('riwayat_iuran.index') }}">Riwayat Iuran</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('pengelola.index') }}">Pengelola</a>
