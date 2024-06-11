@@ -27,7 +27,7 @@
             <!-- Sidebar -->
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('konfigurasi') }}">Konfigurasi</a>
+                    <a class="nav-link" href="{{ route('konfigurasi.index') }}">Konfigurasi</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('pemilik.index') }}">Pemilik</a>

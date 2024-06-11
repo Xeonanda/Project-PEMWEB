@@ -9,7 +9,7 @@ use App\Http\Controllers\RiwayatPemilikanController;
 use App\Http\Controllers\RiwayatIuranController;
 
 Route::get('/', function () {
-    return view('konfigurasi');
+    return view('konfigurasi.index');
 })->name('konfigurasi');
 
 Route::get('/riwayat_iuran', function () {

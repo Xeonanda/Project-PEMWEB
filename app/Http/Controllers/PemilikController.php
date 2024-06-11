@@ -65,13 +65,12 @@ class PemilikController extends Controller
     public function update(Request $request, Pemilik $pemilik)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama' => 'required|string',
             'alamat' => 'required',
-            'nik' => 'required|numeric|digits:16',
-            'no_wa' => 'required|numeric|between:10,15',
-            'no_telp' => 'required|numeric|between:10,15',
-            'id_pasar' => 'required',
-            'created_by' => 'required|string|max:255',
+            'nik' => 'required|numeric',
+            'no_wa' => 'required|numeric',
+            'no_telp' => 'required|numeric',
+            'created_by' => 'required|string',
         ]);
 
         $pemilik->update($request->all());

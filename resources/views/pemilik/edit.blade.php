@@ -16,7 +16,7 @@
                 </ul>
             </div>
             @endif
-
+            @method('PUT')
             <div class="form-group">
                 <label for="nama">Nama</label>
                 <input type="text" name="nama" class="form-control" value="{{ $pemilik->nama }}" required>

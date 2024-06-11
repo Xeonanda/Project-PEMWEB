@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Pengelola')
+@section('title', 'Edit Konfigurasi')
 
 @section('content')
     <div class="container">
-        <h1 class="mt-4">Edit Pengelola</h1>
-        <form action="{{ route('pengelola.update', $pengelola->id) }}" method="POST">
+        <h1 class="mt-4">Edit Tenant</h1>
+        <form action="{{ route('konfigurasis.update', $tenant->id) }}" method="POST">
             @csrf
-            @method('PUT')
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -17,19 +16,18 @@
                 </ul>
             </div>
             @endif
+            @method('PUT')
             <div class="form-group">
-                <label for="id_user">ID User</label>
-                <input type="number" name="id_user" class="form-control" value="{{ $pengelola->id_user }}" required>
+                <label for="name">Name</label>
+                <input type="text" name="name" class="form-control" required>
             </div>
-
             <div class="form-group">
-                <label for="id_pasar">ID Pasar</label>
-                <input type="number" name="id_pasar" class="form-control" value="{{ $pengelola->id_pasar }}" required>
+                <label for="value">Value</label>
+                <input type="number" name="value" class="form-control" required>
             </div>
-
             <div class="form-group">
                 <label for="created_by">Created By</label>
-                <input type="text" name="created_by" class="form-control" value="{{ $pengelola->created_by }}" required>
+                <input type="text" name="created_by" class="form-control" required>
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
