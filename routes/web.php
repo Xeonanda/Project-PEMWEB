@@ -7,7 +7,7 @@ use App\Http\Controllers\TenantController;
 use App\Http\Controllers\RiwayatPemilikanController;
 
 Route::get('/', function () {
-    return view('konfigurasi');
+    return view('konfigurasi.index');
 })->name('konfigurasi');
 
 Route::get('/pemilik', function () {

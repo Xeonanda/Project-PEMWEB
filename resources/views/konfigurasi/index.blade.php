@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Konfigurasis')
+@section('title', 'Konfigurasi')
 
 @section('content')
     <div class="container">
-        <h1 class="mt-4">Konfigurasis</h1>
-        <a class="btn btn-success mb-3" href="{{ route('konfigurasis.create') }}">Create New KOnfigurasi</a>
+        <h1 class="mt-4">Konfigurasi</h1>
+        <a class="btn btn-success mb-3" href="{{ route('konfigurasi.create') }}">Create New KOnfigurasi</a>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -29,8 +29,8 @@
                         <td>{{ $konfigurasi->created_at }}</td>
                         <td>{{ $konfigurasi->updated_at }}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{{ route('konfigurasis.edit', $konfigurasi->id) }}">Edit</a>
-                            <form action="{{ route('konfigurasis.destroy', $konfigurasi->id) }}" method="POST">
+                            <a class="btn btn-primary btn-sm" href="{{ route('konfigurasi.edit', $konfigurasi->id) }}">Edit</a>
+                            <form action="{{ route('konfigurasi.destroy', $konfigurasi->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus konfigurasi ini?')">Delete</button>
