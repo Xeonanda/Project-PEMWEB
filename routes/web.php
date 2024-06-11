@@ -6,10 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\RiwayatPemilikanController;
 use App\Http\Controllers\RiwayatIuranController;
+use App\Http\Controllers\KonfigurasiController;
 
-Route::get('/', function () {
-    return view('konfigurasi.index');
-})->name('konfigurasi');
+Route::get('/', [KonfigurasiController::class, 'index'])->name('konfigurasi');
 
 Route::get('/pemilik', function () {
     return view('pemilik');
@@ -23,5 +22,9 @@ Route::resource('riwayat_pemilikan', RiwayatPemilikanController::class);
 // Pasar
 Route::resource('pasar', PasarController::class);
 Route::resource('pengelola', PengelolaController::class);
+
 // Iuran
 Route::resource('riwayat_iuran', RiwayatIuranController::class);
+
+// Konfigurasi
+Route::resource('konfigurasi', KonfigurasiController::class);

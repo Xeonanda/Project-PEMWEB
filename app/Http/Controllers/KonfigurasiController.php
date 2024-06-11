@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\konfigurasi;
+use App\Models\Konfigurasi;
 use Illuminate\Http\Request;
 
 class KonfigurasiController extends Controller
@@ -21,7 +21,7 @@ class KonfigurasiController extends Controller
      */
     public function create()
     {
-        return view('konfigurasis.create');
+        return view('konfigurasi.create');
     }
 
     /**
@@ -35,17 +35,17 @@ class KonfigurasiController extends Controller
             'created_by' => 'required|string|max:255',
         ]);
 
-        konfigurasi::create($request->all());
-        return redirect()->route('konfigurasis.index')
+        Konfigurasi::create($request->all());
+        return redirect()->route('konfigurasi.index')
                          ->with('success', 'KOnfigurasi created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(konfigurasi $konfigurasi)
+    public function show(Konfigurasi $konfigurasi)
     {
-        return view('konfigurasis.show', compact('konfigurasi'));
+        return view('konfigurasi.show', compact('konfigurasi'));
     }
 
     /**
@@ -53,13 +53,13 @@ class KonfigurasiController extends Controller
      */
     public function edit(konfigurasi $konfigurasi)
     {
-        return view('konfigurasis.edit', compact('konfigurasi'));
+        return view('konfigurasi.edit', compact('konfigurasi'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, konfigurasi $konfigurasi)
+    public function update(Request $request, Konfigurasi $konfigurasi)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -68,17 +68,17 @@ class KonfigurasiController extends Controller
         ]);
 
         $konfigurasi->update($request->all());
-        return redirect()->route('konfigurasis.index')
+        return redirect()->route('konfigurasi.index')
                          ->with('success', 'Konfigurasi updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(konfigurasi $konfigurasi)
+    public function destroy(Konfigurasi $konfigurasi)
     {
         $konfigurasi->delete();
-        return redirect()->route('konfigurasis.index')
+        return redirect()->route('konfigurasi.index')
                          ->with('success', 'Konfigurasi deleted successfully.');
     }
 }
