@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <h1 class="mt-4">Create New Konfigurasi</h1>
-        <form action="{{ route('konfigurasis.store') }}" method="POST">
+        <form action="{{ route('konfigurasi.store') }}" method="POST">
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

@@ -11,10 +11,6 @@ use App\Http\Controllers\KonfigurasiController;
 
 Route::get('/', [KonfigurasiController::class, 'index'])->name('konfigurasi');
 
-Route::get('/riwayat_iuran', function () {
-    return view('riwayat_iuran');
-})->name('riwayat_iuran');
-
 //Pemilik
 Route::resource('pemilik', PemilikController::class);
 

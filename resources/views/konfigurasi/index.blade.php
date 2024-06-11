@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <h1 class="mt-4">Konfigurasi</h1>
-        <a class="btn btn-success mb-3" href="{{ route('konfigurasi.create') }}">Create New KOnfigurasi</a>
+        <a class="btn btn-success mb-3" href="{{ route('konfigurasi.create') }}">Create New Konfigurasi</a>
         <table class="table table-striped">
             <thead>
                 <tr>

@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('konfigurasi', function (Blueprint $table ) {
+        Schema::create('konfigurasis', function (Blueprint $table ) {
             $table->id();
             $table->string('name');
             $table->string('value');
             $table->string('created_by');
             $table->string('edited_by')->nullable();
-
+            $table->timestamps();
         });
     }
 
