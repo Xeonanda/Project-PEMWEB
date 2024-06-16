@@ -19,7 +19,12 @@
             @endif
             <div class="form-group">
                 <label for="id_tenant">ID Tenant</label>
-                <input type="number" name="id_tenant" class="form-control" required>
+                <select name="id_tenant" class="form-control" required>
+                    <option value="">Pilih Tenant</option>
+                    @foreach($tenants as $tenant)
+                        <option value="{{ $tenant->id }}">{{ $tenant->nama }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="tgl_transaksi">Tanggal Transaksi</label>
@@ -27,11 +32,21 @@
             </div>
             <div class="form-group">
                 <label for="id_pemilik_lama">ID Pemilik Lama</label>
-                <input type="number" name="id_pemilik_lama" class="form-control" required>
+                <select name="id_pemilik_lama" class="form-control" required>
+                    <option value="">Pilih Pemilik</option>
+                    @foreach($pemiliks as $pemilik)
+                        <option value="{{ $pemilik->id }}">{{ $pemilik->nama }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="id_pemilik_baru">ID Pemilik Baru</label>
-                <input type="number" name="id_pemilik_baru" class="form-control" required>
+                <select name="id_pemilik_baru" class="form-control" required>
+                    <option value="">Pilih Pemilik</option>
+                    @foreach($pemiliks as $pemilik)
+                        <option value="{{ $pemilik->id }}">{{ $pemilik->nama }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="created_by">Created By</label>

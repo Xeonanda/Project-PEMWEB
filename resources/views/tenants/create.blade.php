@@ -22,7 +22,12 @@
             </div>
             <div class="form-group">
                 <label for="id_pemilik">ID Pemilik</label>
-                <input type="number" name="id_pemilik" class="form-control" required>
+                <select name="id_pemilik" class="form-control" required>
+                    <option value="">Pilih Pemilik</option>
+                    @foreach($pemiliks as $pemilik)
+                        <option value="{{ $pemilik->id }}">{{ $pemilik->nama }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="latitude_tenant">Latitude Tenant</label>
@@ -38,7 +43,12 @@
             </div>
             <div class="form-group">
                 <label for="id_pasar">ID Pasar</label>
-                <input type="number" name="id_pasar" class="form-control" required>
+                <select name="id_pasar" class="form-control" required>
+                    <option value="">Pilih Pasar</option>
+                    @foreach($pasars as $pasar)
+                        <option value="{{ $pasar->id }}">{{ $pasar->nama }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="created_by">Created By</label>
@@ -46,6 +56,5 @@
             </div>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
-
     </div>
 @endsection

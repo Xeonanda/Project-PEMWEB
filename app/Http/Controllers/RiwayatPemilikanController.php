@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\riwayat_pemilikan;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Models\tenant;
+use App\Models\Pemilik;
 
 class RiwayatPemilikanController extends Controller
 {
@@ -22,7 +24,9 @@ class RiwayatPemilikanController extends Controller
      */
     public function create()
     {
-        return view('riwayat_pemilikan.create');
+        $pemiliks = Pemilik::all();
+        $tenants = tenant::all();
+        return view('riwayat_pemilikan.create', compact('pemiliks', 'tenants'));
     }
 
     /**
@@ -65,36 +69,40 @@ class RiwayatPemilikanController extends Controller
      */
     public function edit(riwayat_pemilikan $riwayat_pemilikan)
     {
-        return view('riwayat_pemilikan.edit', compact('riwayat_pemilikan'));
+        $pemiliks = Pemilik::all();
+        $tenants = tenant::all();
+        return view('riwayat_pemilikan.edit', compact('riwayat_pemilikan', 'pemiliks', 'tenants'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-{
-    $validator = Validator::make($request->all(), [
-        'id_tenant' => 'required|numeric',
-        'tgl_transaksi' => 'required|date_format:Y-m-d',
-        'id_pemilik_lama' => 'required|numeric',
-        'id_pemilik_baru' => 'required|numeric',
-        'created_by' => 'required|string|max:255'
-    ]);
+    {
+        $riwayatPemilikan = riwayat_pemilikan::findOrFail(($id));
+        $validator = Validator::make($request->all(), [
+            'id_tenant' => 'required|numeric',
+            'tgl_transaksi' => 'required|date_format:Y-m-d',
+            'id_pemilik_lama' => 'required|numeric',
+            'id_pemilik_baru' => 'required|numeric',
+            'created_by' => 'required|string|max:255',
+            'edited_by' => 'required|string|max:255'
+        ]);
 
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $riwayatPemilikan->id_tenant = $request->id_tenant;
+        $riwayatPemilikan->tgl_transaksi = $request->tgl_transaksi;
+        $riwayatPemilikan->id_pemilik_lama = $request->id_pemilik_lama;
+        $riwayatPemilikan->id_pemilik_baru = $request->id_pemilik_baru;
+        $riwayatPemilikan->created_by = $request->created_by;
+        $riwayatPemilikan->edited_by = $request->edited_by;
+        $riwayatPemilikan->save();
+
+        return redirect()->route('riwayat_pemilikan.index')->with('success', 'Riwayat Pemilikan updated successfully');
     }
-
-    $riwayatPemilikan = riwayat_pemilikan::findOrFail($id);
-    $riwayatPemilikan->id_tenant = $request->id_tenant;
-    $riwayatPemilikan->tgl_transaksi = $request->tgl_transaksi;
-    $riwayatPemilikan->id_pemilik_lama = $request->id_pemilik_lama;
-    $riwayatPemilikan->id_pemilik_baru = $request->id_pemilik_baru;
-    $riwayatPemilikan->created_by = $request->created_by;
-    $riwayatPemilikan->save();
-
-    return redirect()->route('riwayat_pemilikan.index')->with('success', 'Riwayat Pemilikan updated successfully');
-}
 
     /**
      * Remove the specified resource from storage.
