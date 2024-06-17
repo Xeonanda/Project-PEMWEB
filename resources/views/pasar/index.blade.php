@@ -15,8 +15,9 @@
             <th>ID</th>
             <th>Nama</th>
             <th>Alamat</th>
+            <th>Kode Pasar</th>
             <th>Created By</th>
-            {{-- <th>Edited By</th> --}}
+            <th>Edited By</th>
             <th>Created At</th>
             <th>Edited At</th>
             <th>Actions</th>
@@ -32,8 +33,9 @@
                 <td>{{ $p->id }}</td>
                 <td>{{ $p->nama }}</td>
                 <td>{{ $p->alamat }}</td>
+                <td>{{ $p->kode_pasar }}</td>
                 <td>{{ $p->created_by }}</td>
-                {{-- <td>{{ $p->edited_by }}</td> --}}
+                <td>{{ $p->edited_by }}</td>
                 <td>{{ $p->created_at }}</td>
                 <td>{{ $p->updated_at }}</td>
                 <td>

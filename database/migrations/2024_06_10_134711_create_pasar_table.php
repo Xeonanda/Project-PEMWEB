@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('alamat');
-            
+            $table->string('kode_pasar');
             $table->string('created_by');
             $table->string('edited_by')->nullable();
             $table->timestamps();

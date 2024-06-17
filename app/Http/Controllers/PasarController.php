@@ -3,8 +3,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasar;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class PasarController extends Controller
 {
@@ -24,7 +22,7 @@ class PasarController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            
+            'kode_pasar' => 'required|string|max:255',
             'created_by' => 'required|string|max:255',
         ]);
 
@@ -58,7 +56,7 @@ class PasarController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            
+            'kode_pasar' => 'required|string|max:255',
             'created_by' => 'required|string|max:255',
         ]);
 
