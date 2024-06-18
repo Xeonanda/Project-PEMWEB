@@ -19,7 +19,12 @@
         @endif
         <div class="form-group">
             <label for="id_tenant">ID Tenant</label>
-            <input type="number" name="id_tenant" class="form-control" required>
+            <select name="id_tenant" class="form-control" required>
+                <option value="">Pilih Tenant</option>
+                @foreach($tenants as $tenant)
+                    <option value="{{ $tenant->id }}">{{ $tenant->nama }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="tahun_bulan">Tahun - Bulan</label>
