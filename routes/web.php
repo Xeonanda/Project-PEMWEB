@@ -14,7 +14,6 @@ Route::get('/', [KonfigurasiController::class, 'index'])->name('konfigurasi');
 //Pemilik
 Route::resource('pemilik', PemilikController::class);
 
-
 // Tenant
 Route::resource('tenants', TenantController::class);
 Route::resource('riwayat_pemilikan', RiwayatPemilikanController::class);

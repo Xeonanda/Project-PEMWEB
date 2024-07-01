@@ -16,6 +16,12 @@
                 </div>
             @endif
             @csrf
+            
+            <div class="form-group">
+                <label for="nama">Kode Pasar</label>
+                <input type="text" name="kode_pasar" class="form-control" required>
+            </div>
+
             <div class="form-group">
                 <label for="nama">Nama</label>
                 <input type="text" name="nama" class="form-control" required>

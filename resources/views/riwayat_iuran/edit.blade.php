@@ -19,7 +19,14 @@
         @endif
         <div class="form-group">
             <label for="id_tenant">ID Tenant</label>
-            <input type="number" name="id_tenant" class="form-control" value="{{ $riwayatIuran->id_tenant }}" required>
+            <select name="id_tenant" class="form-control" required>
+                <option value="">Pilih Tenant</option>
+                @foreach($tenants as $tenant)
+                    <option value="{{ $tenant->id }}" {{ $riwayatIuran->id_tenant == $tenant->id ? 'selected' : '' }}>
+                        {{ $tenant->nama }}
+                    </option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="tahun_bulan">Tahun - Bulan</label>
@@ -63,6 +70,10 @@
         <div class="form-group">
             <label for="created_by">Created By</label>
             <input type="text" name="created_by" class="form-control" value="{{ $riwayatIuran->created_by }}" required>
+        </div>
+        <div class="form-group">
+            <label for="edited_by">Edited By</label>
+            <input type="text" name="edited_by" class="form-control" value="{{ $riwayatIuran->edited_by ?? old('edited_by') }}" required>
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
     </form>

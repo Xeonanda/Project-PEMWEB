@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\tenant;
 use Illuminate\Http\Request;
+use App\Models\Pemilik;
+use App\Models\Pasar;
 
 class TenantController extends Controller
 {
@@ -21,7 +23,9 @@ class TenantController extends Controller
      */
     public function create()
     {
-        return view('tenants.create');
+        $pemiliks = Pemilik::all();
+        $pasars = Pasar::all();
+        return view('tenants.create', compact('pemiliks', 'pasars'));
     }
 
     /**
@@ -57,27 +61,32 @@ class TenantController extends Controller
      */
     public function edit(tenant $tenant)
     {
-        return view('tenants.edit', compact('tenant'));
+        $pemiliks = Pemilik::all();
+        $pasars = Pasar::all();
+        return view('tenants.edit', compact('tenant', 'pemiliks', 'pasars'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, tenant $tenant)
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        $tenant = Tenant::findOrFail($id);
+
+        $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
-            'id_pemilik' => 'required|numeric',
-            'latitude_tenant' => 'required|numeric|between:-90,90',
-            'longitude_tenant' => 'required|numeric|between:-180,180',
-            'harga_iuran' => 'required|numeric|min:0',
-            'id_pasar' => 'required|numeric',
+            'id_pemilik' => 'required|integer',
+            'latitude_tenant' => 'required|numeric',
+            'longitude_tenant' => 'required|numeric',
+            'harga_iuran' => 'required|numeric',
+            'id_pasar' => 'required|integer',
             'created_by' => 'required|string|max:255',
+            'edited_by' => 'required|string|max:255',
         ]);
 
-        $tenant->update($request->all());
-        return redirect()->route('tenants.index')
-                         ->with('success', 'Tenant updated successfully.');
+        $tenant->update($validatedData);
+
+        return redirect()->route('tenants.index')->with('success', 'Tenant updated successfully');
     }
 
     /**

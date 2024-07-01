@@ -17,10 +17,18 @@
                 </div>
             @endif
             @method('PUT')
+
+            <div class="form-group">
+                <label for="kode_pasar">Kode Pasar</label>
+                <input type="hidden" name="kode_pasar" value="{{ $pasar->kode_pasar }}">
+                <p class="form-control-static">{{ $pasar->kode_pasar }}</p>
+            </div>
+            
             <div class="form-group">
                 <label for="nama">Nama</label>
                 <input type="text" name="nama" class="form-control" value="{{ $pasar->nama }}" required>
             </div>
+
             <div class="form-group">
                 <label for="alamat">Alamat</label>
                 <input type="text" name="alamat" class="form-control" value="{{ $pasar->alamat }}" required>
@@ -28,7 +36,13 @@
 
             <div class="form-group">
                 <label for="created_by">Created By</label>
-                <input type="text" name="created_by" class="form-control" value="{{ $pasar->created_by }}" required>
+                <input type="hidden" name="created_by" value="{{ $pasar->created_by }}">
+                <p class="form-control-static">{{ $pasar->created_by }}</p>
+            </div>
+
+            <div class="form-group">
+                <label for="edited_by">Edited By</label>
+                <input type="text" name="edited_by" class="form-control" value="{{ $pasar->edited_by ?? old('edited_by') }}" required>
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
