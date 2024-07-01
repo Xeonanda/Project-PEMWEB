@@ -8,13 +8,13 @@
         <form action="{{ route('pasar.update', $pasar->id) }}" method="POST">
             @csrf
             @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
             @method('PUT')
             <div class="form-group">
@@ -24,6 +24,7 @@
             <div class="form-group">
                 <label for="alamat">Alamat</label>
                 <input type="text" name="alamat" class="form-control" value="{{ $pasar->alamat }}" required>
+            </div>
 
             <div class="form-group">
                 <label for="created_by">Created By</label>
