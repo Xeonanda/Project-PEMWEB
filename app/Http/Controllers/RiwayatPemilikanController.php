@@ -13,9 +13,18 @@ class RiwayatPemilikanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $riwayat_pemilikans = Riwayat_pemilikan::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = riwayat_pemilikan::query();
+
+        if (!empty($search)) {
+            $query->where('id_tenant', 'like', '%' . $search . '%')->orWhere('tgl_transaksi', 'like', '%' . $search . '%')->orWhere('id_pemilik_lama', 'like', '%' . $search . '%')->orWhere('id_pemilik_baru', 'like', '%' . $search . '%');
+        }
+
+        $riwayat_pemilikans = $query->paginate($perPage);
         return view('riwayat_pemilikan.index', compact('riwayat_pemilikans'));
     }
 

@@ -6,9 +6,18 @@ use App\Models\Pasar;
 
 class PasarController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pasar = Pasar::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = Pasar::query();
+
+        if (!empty($search)) {
+            $query->where('nama', 'like', '%' . $search . '%')->orWhere('alamat', 'like', '%' . $search . '%')->orWhere('kode_pasar', 'like', '%' . $search . '%');
+        }
+
+        $pasar = $query->paginate($perPage);
         return view('pasar.index', compact('pasar'));
     }
 
@@ -26,10 +35,10 @@ class PasarController extends Controller
             'created_by' => 'required|string|max:255',
         ]);
 
-        Pasar::create($request->all());  
+        Pasar::create($request->all());
         return redirect()->route('pasar.index')
                          ->with('success', 'Pasar created successfully.');
-        
+
     }
 
      /**

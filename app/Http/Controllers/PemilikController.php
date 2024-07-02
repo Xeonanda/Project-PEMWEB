@@ -10,9 +10,18 @@ class PemilikController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pemilik = Pemilik::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = Pemilik::query();
+
+        if (!empty($search)) {
+            $query->where('nama', 'like', '%' . $search . '%')->orWhere('alamat', 'like', '%' . $search . '%')->orWhere('nik', 'like', '%' . $search . '%')->orWhere('no_wa', 'like', '%' . $search . '%')->orWhere('no_telp', 'like', '%' . $search . '%');
+        }
+
+        $pemilik = $query->paginate($perPage);
         return view('pemilik.index', compact('pemilik'));
     }
 

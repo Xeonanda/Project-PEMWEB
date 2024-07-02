@@ -12,9 +12,18 @@ class TenantController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tenants = Tenant::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = tenant::query();
+
+        if (!empty($search)) {
+            $query->where('nama', 'like', '%' . $search . '%')->orWhere('id_pemilik', 'like', '%' . $search . '%')->orWhere('harga_iuran', 'like', '%' . $search . '%')->orWhere('id_pasar', 'like', '%' . $search . '%');
+        }
+
+        $tenants = $query->paginate($perPage);
         return view('tenants.index', compact('tenants'));
     }
 

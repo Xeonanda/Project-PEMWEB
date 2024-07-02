@@ -7,9 +7,18 @@ use Illuminate\Http\Request;
 
 class PengelolaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pengelola = Pengelola::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = Pengelola::query();
+
+        if (!empty($search)) {
+            $query->where('id_user', 'like', '%' . $search . '%')->orWhere('id_pasar', 'like', '%' . $search . '%');
+        }
+
+        $pengelola = $query->paginate($perPage);
         return view('pengelola.index', compact('pengelola'));
     }
 
@@ -26,10 +35,10 @@ class PengelolaController extends Controller
             'created_by' => 'required|string|max:255',
         ]);
 
-        Pengelola::create($request->all());  
+        Pengelola::create($request->all());
         return redirect()->route('pengelola.index')
                          ->with('success', 'Pengelola created successfully.');
-        
+
     }
 
      /**

@@ -10,9 +10,18 @@ class KonfigurasiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $konfigurasis = Konfigurasi::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = Konfigurasi::query();
+
+        if (!empty($search)) {
+            $query->where('name', 'like', '%' . $search . '%')->orWhere('value', 'like', '%' . $search . '%');
+        }
+
+        $konfigurasis = $query->paginate($perPage);
         return view('konfigurasi.index', compact('konfigurasis'));
     }
 

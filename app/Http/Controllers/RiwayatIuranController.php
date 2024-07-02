@@ -9,9 +9,18 @@ use Illuminate\Http\Request;
 
 class RiwayatIuranController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $riwayat_iuran = RiwayatIuran::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = RiwayatIuran::query();
+
+        if (!empty($search)) {
+            $query->where('id_tenant', 'like', '%' . $search . '%')->orWhere('tahun_bulan', 'like', '%' . $search . '%')->orWhere('jml_bayar', 'like', '%' . $search . '%')->orWhere('tgl_bayar', 'like', '%' . $search . '%');
+        }
+
+        $riwayat_iuran = $query->paginate($perPage);
         return view('riwayat_iuran.index', compact('riwayat_iuran'));
     }
 
