@@ -27,3 +27,6 @@ Route::resource('riwayat_iuran', RiwayatIuranController::class);
 
 // Konfigurasi
 Route::resource('konfigurasi', KonfigurasiController::class);
+
+// Export
+Route::get('export-pasar', [PasarController::class, 'export'])->name('export.pasar');

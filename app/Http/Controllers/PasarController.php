@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasar;
+use App\Exports\PasarsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PasarController extends Controller
 {
@@ -26,10 +28,10 @@ class PasarController extends Controller
             'created_by' => 'required|string|max:255',
         ]);
 
-        Pasar::create($request->all());  
+        Pasar::create($request->all());
         return redirect()->route('pasar.index')
                          ->with('success', 'Pasar created successfully.');
-        
+
     }
 
      /**
@@ -73,6 +75,11 @@ class PasarController extends Controller
         $pasar->delete();
         return redirect()->route('pasar.index')
                          ->with('success', 'Pasar deleted successfully.');
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new PasarsExport($request), 'pasar.xlsx');
     }
 }
 
