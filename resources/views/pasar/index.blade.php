@@ -31,9 +31,6 @@
                             <th>ID</th>
                             <th>Nama</th>
                             <th>Alamat</th>
-                            <th>Created By</th>
-                            <th>Created At</th>
-                            <th>Edited At</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -47,12 +44,9 @@
                                 <td>{{ $p->id }}</td>
                                 <td>{{ $p->nama }}</td>
                                 <td>{{ $p->alamat }}</td>
-                                <td>{{ $p->created_by }}</td>
-                                <td>{{ $p->created_at }}</td>
-                                <td>{{ $p->updated_at }}</td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm"
-                                        href="{{ route('pasar.edit', $p->id) }}">Edit</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('pasar.show', $pasar->id) }}">Show</a>
+                                <a class="btn btn-secondary btn-sm" href="{{ route('pasar.edit', $pasar->id) }}">Edit</a>
                                     <form action="{{ route('pasar.destroy', $p->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')

@@ -6,7 +6,12 @@
     <div class="container">
         <h1 class="mt-4">Add Pasar</h1>
         <form action="{{ route('pasar.store') }}" method="POST">
-            @if ($errors->any())
+        <div class="card">
+                <div class="card-body">
+                <form action="{{ route('pasar.update', $pasar->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -14,29 +19,22 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
-            @csrf
-            
-            <div class="form-group">
-                <label for="nama">Kode Pasar</label>
-                <input type="text" name="kode_pasar" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="nama">Nama</label>
-                <input type="text" name="nama" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="alamat">Alamat</label>
-                <input type="text" name="alamat" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="created_by">Created By</label>
-                <input type="text" name="created_by" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+                @endif
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" class="form-control" value="{{ $pasar->name}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="value">Value</label>
+                    <input type="number" name="value" class="form-control" value="{{ $pasar->value}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="created_by">Created By</label>
+                    <input type="text" name="created_by" class="form-control" value="{{ $pasar->created_by}}" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
     </div>
+</div>
 @endsection
