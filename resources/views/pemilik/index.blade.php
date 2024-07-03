@@ -46,13 +46,12 @@
                                 <td>{{ $p->no_wa }}</td>
                                 <td>{{ $p->no_telp }}</td>
                                 <td>
-                                <a class="btn btn-primary btn-sm" href="{{ route('pemilik.show', $pemilik->id) }}">Show</a>
-                                <a class="btn btn-secondary btn-sm" href="{{ route('pemilik.edit', $pemilik->id) }}">Edit</a>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('pemilik.show', $p->id) }}">Show</a>
+                                    <a class="btn btn-secondary btn-sm" href="{{ route('pemilik.edit', $p->id) }}">Edit</a>
                                     <form action="{{ route('pemilik.destroy', $p->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Apakah Anda yakin ingin menghapus pemilik ini?')">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus pemilik ini?')">Delete</button>
                                     </form>
                                 </td>
                             </tr>
