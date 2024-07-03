@@ -3,6 +3,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasar;
+use App\Exports\PasarsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class PasarController extends Controller
 {
@@ -82,6 +85,13 @@ class PasarController extends Controller
         $pasar->delete();
         return redirect()->route('pasar.index')
                          ->with('success', 'Pasar deleted successfully.');
+    }
+
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "Pasar_{$timestamp}.xlsx";
+        return Excel::download(new PasarsExport($request), $fileName);
     }
 }
 

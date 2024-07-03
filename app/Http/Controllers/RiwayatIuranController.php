@@ -6,6 +6,9 @@ use App\Models\RiwayatIuran;
 use App\Models\tenant;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Exports\RiwayatIuranExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class RiwayatIuranController extends Controller
 {
@@ -103,5 +106,12 @@ class RiwayatIuranController extends Controller
     {
         $riwayatIuran->delete();
         return redirect()->route('riwayat_iuran.index')->with('success', 'Riwayat Iuran deleted successfully');
+    }
+
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "RiwayatIuran_{$timestamp}.xlsx";
+        return Excel::download(new RiwayatIuranExport($request), $fileName);
     }
 }

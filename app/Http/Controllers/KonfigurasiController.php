@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Konfigurasi;
 use Illuminate\Http\Request;
+use App\Exports\KonfigurasisExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class KonfigurasiController extends Controller
 {
@@ -90,4 +93,12 @@ class KonfigurasiController extends Controller
         return redirect()->route('konfigurasi.index')
                          ->with('success', 'Konfigurasi deleted successfully.');
     }
+
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "Konfigurasi_{$timestamp}.xlsx";
+        return Excel::download(new KonfigurasisExport($request), $fileName);
+    }
+
 }

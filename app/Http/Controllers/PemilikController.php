@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Pemilik;
 use Illuminate\Http\Request;
+use App\Exports\PemilikExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class PemilikController extends Controller
 {
@@ -95,5 +98,11 @@ class PemilikController extends Controller
         $pemilik->delete();
         return redirect()->route('pemilik.index')
                          ->with('success', 'Pemilik deleted successfully.');
+    }
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "Pemilik_{$timestamp}.xlsx";
+        return Excel::download(new PemilikExport($request), $fileName);
     }
 }

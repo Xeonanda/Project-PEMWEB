@@ -34,3 +34,12 @@ ROute::post('/logout', function (){
     Auth::logout();
     return redirect('/');
 })->name('logout');
+
+// Export
+Route::get('export-pasar', [PasarController::class, 'export'])->name('export.pasar');
+Route::get('export-konfigurasi', [KonfigurasiController::class, 'export'])->name('export.konfigurasi');
+Route::get('export-tenants', [TenantController::class, 'export'])->name('export.tenants');
+Route::get('export-riwayat_pemilikan', [RiwayatPemilikanController::class, 'export'])->name('export.riwayat_pemilikan');
+Route::get('export-riwayat_iuran', [RiwayatIuranController::class, 'export'])->name('export.riwayat_iuran');
+Route::get('export-pengelola', [PengelolaController::class, 'export'])->name('export.pengelola');
+Route::get('export-pemilik', [PemilikController::class, 'export'])->name('export.pemilik');

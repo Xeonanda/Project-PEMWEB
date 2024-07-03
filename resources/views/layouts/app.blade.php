@@ -42,7 +42,7 @@
         }
 
         nav {
-            flex: 0 0 200px;
+            flex: 0 0 350px;
             background-color: #343a40;
             color: white;
         }

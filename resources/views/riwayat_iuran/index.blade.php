@@ -8,7 +8,13 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <a class="btn btn-success mb-3" href="{{ route('riwayat_iuran.create') }}">Create New Riwayat Iuran</a>
+                    <div>
+                        <a class="btn btn-success mr-2" href="{{ route('riwayat_iuran.create') }}">Create New Riwayat Iuran</a>
+                        <form action="{{ route('export.riwayat_iuran') }}" method="GET" class="d-inline">
+                            <input type="hidden" name="search" value="{{ request()->query('search') }}">
+                            <button type="submit" class="btn btn-primary mr-2">Export to Excel</button>
+                        </form>
+                    </div>
                     <form action="{{ route('riwayat_iuran.index') }}" method="GET" class="form-inline">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request()->get('search') }}">

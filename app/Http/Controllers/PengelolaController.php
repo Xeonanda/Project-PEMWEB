@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengelola;
 use Illuminate\Http\Request;
+use App\Exports\PengelolaExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class PengelolaController extends Controller
 {
@@ -81,5 +84,12 @@ class PengelolaController extends Controller
         $pengelola->delete();
         return redirect()->route('pengelola.index')
                          ->with('success', 'Pengelola deleted successfully.');
+    }
+
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "Pengelola_{$timestamp}.xlsx";
+        return Excel::download(new PengelolaExport($request), $fileName);
     }
 }

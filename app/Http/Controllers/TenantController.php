@@ -6,6 +6,9 @@ use App\Models\tenant;
 use Illuminate\Http\Request;
 use App\Models\Pemilik;
 use App\Models\Pasar;
+use App\Exports\TenantExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class TenantController extends Controller
 {
@@ -19,8 +22,8 @@ class TenantController extends Controller
 
         $query = tenant::query();
 
-        if (!empty($search)) {
-            $query->where('nama', 'like', '%' . $search . '%')->orWhere('id_pemilik', 'like', '%' . $search . '%')->orWhere('harga_iuran', 'like', '%' . $search . '%')->orWhere('id_pasar', 'like', '%' . $search . '%');
+      $query->where('nama', 'like', '%' . $search . '%')->orWhere('id_pemilik', 'like', '%' . $search . '%')->orWhere('harga_iuran', 'like', '%' . $search . '%')->orWhere('id_pasar', 'like', '%' . $search . '%');  if (!empty($search)) {
+
         }
 
         $tenants = $query->paginate($perPage);
@@ -106,5 +109,12 @@ class TenantController extends Controller
         $tenant->delete();
         return redirect()->route('tenants.index')
                          ->with('success', 'Tenant deleted successfully.');
+    }
+
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "Tenant_{$timestamp}.xlsx";
+        return Excel::download(new TenantExport($request), $fileName);
     }
 }
