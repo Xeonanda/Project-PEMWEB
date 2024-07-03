@@ -30,10 +30,6 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Value</th>
-                            <th>Created By</th>
-                            <th>Edited By</th>
-                            <th>Created At</th>
-                            <th>Edited At</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -43,13 +39,9 @@
                                 <td>{{ $konfigurasi->id }}</td>
                                 <td>{{ $konfigurasi->name }}</td>
                                 <td>{{ $konfigurasi->value }}</td>
-                                <td>{{ $konfigurasi->created_by }}</td>
-                                <td>{{ $konfigurasi->edited_by }}</td>
-                                <td>{{ $konfigurasi->created_at }}</td>
-                                <td>{{ $konfigurasi->updated_at }}</td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm"
-                                        href="{{ route('konfigurasi.edit', $konfigurasi->id) }}">Edit</a>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('konfigurasi.show', $konfigurasi->id) }}">Show</a>
+                                    <a class="btn btn-secondary btn-sm" href="{{ route('konfigurasi.edit', $konfigurasi->id) }}">Edit</a>
                                     <form action="{{ route('konfigurasi.destroy', $konfigurasi->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
