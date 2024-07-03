@@ -14,11 +14,15 @@
                 </tr>
                 <tr>
                     <th>Name</th>
-                    <td>{{ $pasar->name }}</td>
+                    <td>{{ $pasar->nama }}</td>
                 </tr>
                 <tr>
-                    <th>Value</th>
-                    <td>{{ $pasar->value }}</td>
+                    <th>Alamat</th>
+                    <td>{{ $pasar->alamat }}</td>
+                </tr>
+                <tr>
+                    <th>Kode Pasar</th>
+                    <td>{{ $pasar->kode_pasar }}</td>
                 </tr>
                 <tr>
                     <th>Created By</th>
