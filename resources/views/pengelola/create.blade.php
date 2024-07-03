@@ -1,39 +1,42 @@
 @extends('layouts.app')
 
-@section('title', 'Create Pengelola')
+@section('title', 'Create Pasar')
 
 @section('content')
-    <div class="container">
-        <h1 class="mt-4">Create New Pengelola</h1>
-        <form action="{{ route('pengelola.store') }}" method="POST">
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-            @csrf
-            
-            <div class="form-group">
-                <label for="id_user">ID User</label>
-                <input type="number" name="id_user" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="id_pasar">ID Pasar</label>
-                <input type="number" name="id_pasar" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="created_by">Created By</label>
-                <input type="text" name="created_by" class="form-control" required>
-            </div>
-
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
-
+<div class="container">
+    <h1 class="mt-4">Create New Pengelola</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action="{{ route('pengelola.store') }}" method="POST">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                @csrf
+                <div class="form-group">
+                    <label for="id_user">User ID</label>
+                    <input type="number" name="id_user" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="id_pasar">Pasar ID</label>
+                    <input type="number" name="id_pasar" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="created_by">Created By</label>
+                    <input type="text" name="created_by" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="edited_by">Edited By</label>
+                    <input type="text" name="edited_by" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
     </div>
+</div>
 @endsection
