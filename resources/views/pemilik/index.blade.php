@@ -33,10 +33,6 @@
                             <th>NIK</th>
                             <th>No WA</th>
                             <th>No Telp</th>
-                            <th>Created By</th>
-                            <th>Edited By</th>
-                            <th>Created At</th>
-                            <th>Edited At</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -49,13 +45,9 @@
                                 <td>{{ $p->nik }}</td>
                                 <td>{{ $p->no_wa }}</td>
                                 <td>{{ $p->no_telp }}</td>
-                                <td>{{ $p->created_by }}</td>
-                                <td>{{ $p->edited_by }}</td>
-                                <td>{{ $p->created_at }}</td>
-                                <td>{{ $p->updated_at }}</td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm"
-                                        href="{{ route('pemilik.edit', $p->id) }}">Edit</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('pemilik.show', $pemilik->id) }}">Show</a>
+                                <a class="btn btn-secondary btn-sm" href="{{ route('pemilik.edit', $pemilik->id) }}">Edit</a>
                                     <form action="{{ route('pemilik.destroy', $p->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
