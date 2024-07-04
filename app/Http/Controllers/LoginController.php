@@ -24,7 +24,6 @@ class LoginController extends Controller
             'email' => 'required|email:dns',
             'password' => 'required'
         ]);
-        dd('berhasil Login!');
  
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -32,6 +31,6 @@ class LoginController extends Controller
             return redirect()->intended('/konfigurasi');
         }
  
-        return back()->with('loginError', 'Login failed!');
+        return back()->with('loginError', 'Login gagal!');
     }
 }
