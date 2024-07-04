@@ -8,7 +8,9 @@ use App\Http\Controllers\TenantController;
 use App\Http\Controllers\RiwayatPemilikanController;
 use App\Http\Controllers\RiwayatIuranController;
 use App\Http\Controllers\KonfigurasiController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', [KonfigurasiController::class, 'index'])->name('konfigurasi');
 
@@ -29,8 +31,15 @@ Route::resource('riwayat_iuran', RiwayatIuranController::class);
 // Konfigurasi
 Route::resource('konfigurasi', KonfigurasiController::class);
 
+// Login
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
+// Register
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
+
 // Logout Route
-ROute::post('/logout', function (){
+Route::post('/logout', function (){
     Auth::logout();
     return redirect('/');
 })->name('logout');
