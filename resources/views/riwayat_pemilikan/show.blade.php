@@ -10,48 +10,48 @@
             <table class="table table-bordered">
                 <tr>
                     <th>ID</th>
-                    <td>{{ $riwayatKepemilikan->id }}</td>
+                    <td>{{ $riwayat_pemilikan->id }}</td>
                 </tr>
                 <tr>
                     <th>ID Tenant</th>
-                    <td>{{ $riwayatKepemilikan->id_tenant }}</td>
+                    <td>{{ $riwayat_pemilikan->id_tenant }}</td>
                 </tr>
                 <tr>
                     <th>Tanggal Transaksi</th>
-                    <td>{{ $riwayatKepemilikan->tgl_transaksi }}</td>
+                    <td>{{ $riwayat_pemilikan->tgl_transaksi }}</td>
                 </tr>
                 <tr>
                     <th>ID Pemilik Lama</th>
-                    <td>{{ $riwayatKepemilikan->id_pemilik_lama }}</td>
+                    <td>{{ $riwayat_pemilikan->id_pemilik_lama }}</td>
                 </tr>
                 <tr>
                     <th>ID Pemilik Baru</th>
-                    <td>{{ $riwayatKepemilikan->id_pemilik_baru }}</td>
+                    <td>{{ $riwayat_pemilikan->id_pemilik_baru }}</td>
                 </tr>
                 <tr>
                     <th>Created By</th>
-                    <td>{{ $riwayatKepemilikan->created_by }}</td>
+                    <td>{{ $riwayat_pemilikan->created_by }}</td>
                 </tr>
                 <tr>
                     <th>Edited By</th>
-                    <td>{{ $riwayatKepemilikan->edited_by }}</td>
+                    <td>{{ $riwayat_pemilikan->edited_by }}</td>
                 </tr>
                 <tr>
                     <th>Created At</th>
-                    <td>{{ $riwayatKepemilikan->created_at }}</td>
+                    <td>{{ $riwayat_pemilikan->created_at }}</td>
                 </tr>
                 <tr>
                     <th>Updated At</th>
-                    <td>{{ $riwayatKepemilikan->updated_at }}</td>
+                    <td>{{ $riwayat_pemilikan->updated_at }}</td>
                 </tr>
             </table>
             <div class="d-flex justify-content-between">
                 <div>
-                    <a href="{{ route('riwayatKepemilikan.index') }}" class="btn btn-primary">Kembali</a>
+                    <a href="{{ route('riwayat_pemilikan.index') }}" class="btn btn-primary">Kembali</a>
                 </div>
                 <div>
-                    <a class="btn btn-secondary" href="{{ route('riwayatKepemilikan.edit', $riwayatKepemilikan->id) }}">Edit</a>
-                    <form action="{{ route('riwayatKepemilikan.destroy', $riwayatKepemilikan->id) }}" method="POST" class="d-inline">
+                    <a class="btn btn-secondary" href="{{ route('riwayat_pemilikan.edit', $riwayat_pemilikan->id) }}">Edit</a>
+                    <form action="{{ route('riwayat_pemilikan.destroy', $riwayat_pemilikan->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger"

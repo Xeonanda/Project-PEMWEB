@@ -30,23 +30,19 @@
                             <th>ID</th>
                             <th>ID User</th>
                             <th>ID Pasar</th>
-                            <th>Created By</th>
-                            <th>Edited By</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pengelolas as $pengelola)
+                        @foreach ($pengelola as $p)
                             <tr>
-                                <td>{{ $pengelola->id }}</td>
-                                <td>{{ $pengelola->id_user }}</td>
-                                <td>{{ $pengelola->id_pasar }}</td>
-                                <td>{{ $pengelola->created_by }}</td>
-                                <td>{{ $pengelola->edited_by }}</td>
+                                <td>{{ $p->id }}</td>
+                                <td>{{ $p->id_user }}</td>
+                                <td>{{ $p->id_pasar }}</td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="{{ route('pengelola.show', $pengelola->id) }}">Show</a>
-                                    <a class="btn btn-secondary btn-sm" href="{{ route('pengelola.edit', $pengelola->id) }}">Edit</a>
-                                    <form action="{{ route('pengelola.destroy', $pengelola->id) }}" method="POST" class="d-inline">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('pengelola.show', $p->id) }}">Show</a>
+                                    <a class="btn btn-secondary btn-sm" href="{{ route('pengelola.edit', $p->id) }}">Edit</a>
+                                    <form action="{{ route('pengelola.destroy', $p->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"
@@ -58,15 +54,15 @@
                     </tbody>
                 </table>
                 <ul class="pagination">
-                    @if ($pengelolas->onFirstPage())
+                    @if ($pengelola->onFirstPage())
                         <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
                     @else
-                        <li class="page-item"><a class="page-link" href="{{ $pengelolas->previousPageUrl() }}">&laquo;</a></li>
+                        <li class="page-item"><a class="page-link" href="{{ $pengelola->previousPageUrl() }}">&laquo;</a></li>
                     @endif
 
                     @php
-                        $currentPage = $pengelolas->currentPage();
-                        $lastPage = $pengelolas->lastPage();
+                        $currentPage = $pengelola->currentPage();
+                        $lastPage = $pengelola->lastPage();
                         $start = max($currentPage - 2, 1);
                         $end = min($currentPage + 2, $lastPage);
 
@@ -78,7 +74,7 @@
                     @endphp
 
                     @if ($start > 1)
-                        <li class="page-item"><a class="page-link" href="{{ $pengelolas->url(1) }}">1</a></li>
+                        <li class="page-item"><a class="page-link" href="{{ $pengelola->url(1) }}">1</a></li>
                         @if ($start > 2)
                             <li class="page-item disabled"><span class="page-link">...</span></li>
                         @endif
@@ -86,7 +82,7 @@
 
                     @foreach(range($start, $end) as $page)
                         <li class="page-item {{ ($currentPage == $page) ? 'active' : '' }}">
-                            <a class="page-link" href="{{ $pengelolas->url($page) }}">{{ $page }}</a>
+                            <a class="page-link" href="{{ $pengelola->url($page) }}">{{ $page }}</a>
                         </li>
                     @endforeach
 
@@ -94,11 +90,11 @@
                         @if ($end < $lastPage - 1)
                             <li class="page-item disabled"><span class="page-link">...</span></li>
                         @endif
-                        <li class="page-item"><a class="page-link" href="{{ $pengelolas->url($lastPage) }}">{{ $lastPage }}</a></li>
+                        <li class="page-item"><a class="page-link" href="{{ $pengelola->url($lastPage) }}">{{ $lastPage }}</a></li>
                     @endif
 
-                    @if ($pengelolas->hasMorePages())
-                        <li class="page-item"><a class="page-link" href="{{ $pengelolas->nextPageUrl() }}">&raquo;</a></li>
+                    @if ($pengelola->hasMorePages())
+                        <li class="page-item"><a class="page-link" href="{{ $pengelola->nextPageUrl() }}">&raquo;</a></li>
                     @else
                         <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
                     @endif

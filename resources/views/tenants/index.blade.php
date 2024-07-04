@@ -9,13 +9,13 @@
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <a class="btn btn-success mr-2" href="{{ route('tenant.create') }}">Create New Tenant</a>
-                    <form action="{{ route('export.tenant') }}" method="GET" class="d-inline">
+                    <a class="btn btn-success mr-2" href="{{ route('tenants.create') }}">Create New Tenant</a>
+                    <form action="{{ route('export.tenants') }}" method="GET" class="d-inline">
                         <input type="hidden" name="search" value="{{ request()->query('search') }}">
                         <button type="submit" class="btn btn-primary mr-2">Export to Excel</button>
                     </form>
                 </div>
-                <form action="{{ route('tenant.index') }}" method="GET" class="form-inline">
+                <form action="{{ route('tenants.index') }}" method="GET" class="form-inline">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request()->get('search') }}">
                         <div class="input-group-append">
@@ -34,8 +34,6 @@
                         <th>Longitude</th>
                         <th>Harga Iuran</th>
                         <th>ID Pasar</th>
-                        <th>Created By</th>
-                        <th>Edited By</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -49,12 +47,10 @@
                             <td>{{ $tenant->longitude_tenant }}</td>
                             <td>{{ $tenant->harga_iuran }}</td>
                             <td>{{ $tenant->id_pasar }}</td>
-                            <td>{{ $tenant->created_by }}</td>
-                            <td>{{ $tenant->edited_by }}</td>
                             <td>
-                                <a class="btn btn-primary btn-sm" href="{{ route('tenant.show', $tenant->id) }}">Show</a>
-                                <a class="btn btn-secondary btn-sm" href="{{ route('tenant.edit', $tenant->id) }}">Edit</a>
-                                <form action="{{ route('tenant.destroy', $tenant->id) }}" method="POST" class="d-inline">
+                                <a class="btn btn-primary btn-sm" href="{{ route('tenants.show', $tenant->id) }}">Show</a>
+                                <a class="btn btn-secondary btn-sm" href="{{ route('tenants.edit', $tenant->id) }}">Edit</a>
+                                <form action="{{ route('tenants.destroy', $tenant->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"

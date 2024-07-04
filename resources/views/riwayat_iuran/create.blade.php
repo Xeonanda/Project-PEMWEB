@@ -20,11 +20,40 @@
                 @csrf
                 <div class="form-group">
                     <label for="id_tenant">ID Tenant</label>
-                    <input type="text" name="id_tenant" class="form-control" required>
+                    <select name="id_tenant" class="form-control" required>
+                        <option value="">Pilih Tenant</option>
+                        @foreach($tenants as $tenant)
+                            <option value="{{ $tenant->id }}">{{ $tenant->nama }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="tahun_bulan">Tahun Bulan</label>
-                    <input type="text" name="tahun_bulan" class="form-control" required>
+                    <label for="tahun_bulan">Tahun - Bulan</label>
+                    <div class="row">
+                        <div class="col">
+                            <select name="tahun" id="tahun" class="form-control" required>
+                                @for ($year = 2015; $year <= 2025; $year++)
+                                    <option value="{{ $year }}">{{ $year }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select name="bulan" id="bulan" class="form-control" required>
+                                <option value="01">January</option>
+                                <option value="02">February</option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">August</option>
+                                <option value="09">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="jml_bayar">Jumlah Bayar</label>

@@ -32,21 +32,17 @@
                         <th>Tanggal Transaksi</th>
                         <th>ID Pemilik Lama</th>
                         <th>ID Pemilik Baru</th>
-                        <th>Created By</th>
-                        <th>Edited By</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($riwayatPemilikan as $rp)
+                    @foreach ($riwayat_pemilikans as $rp)
                         <tr>
                             <td>{{ $rp->id }}</td>
                             <td>{{ $rp->id_tenant }}</td>
                             <td>{{ $rp->tgl_transaksi }}</td>
                             <td>{{ $rp->id_pemilik_lama }}</td>
                             <td>{{ $rp->id_pemilik_baru }}</td>
-                            <td>{{ $rp->created_by }}</td>
-                            <td>{{ $rp->edited_by }}</td>
                             <td>
                                 <a class="btn btn-primary btn-sm" href="{{ route('riwayat_pemilikan.show', $rp->id) }}">Show</a>
                                 <a class="btn btn-secondary btn-sm" href="{{ route('riwayat_pemilikan.edit', $rp->id) }}">Edit</a>
@@ -62,15 +58,15 @@
                 </tbody>
             </table>
             <ul class="pagination">
-                @if ($riwayatPemilikan->onFirstPage())
+                @if ($riwayat_pemilikans->onFirstPage())
                     <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
                 @else
-                    <li class="page-item"><a class="page-link" href="{{ $riwayatPemilikan->previousPageUrl() }}">&laquo;</a></li>
+                    <li class="page-item"><a class="page-link" href="{{ $riwayat_pemilikans->previousPageUrl() }}">&laquo;</a></li>
                 @endif
 
                 @php
-                    $currentPage = $riwayatPemilikan->currentPage();
-                    $lastPage = $riwayatPemilikan->lastPage();
+                    $currentPage = $riwayat_pemilikans->currentPage();
+                    $lastPage = $riwayat_pemilikans->lastPage();
                     $start = max($currentPage - 2, 1);
                     $end = min($currentPage + 2, $lastPage);
 
@@ -82,7 +78,7 @@
                 @endphp
 
                 @if ($start > 1)
-                    <li class="page-item"><a class="page-link" href="{{ $riwayatPemilikan->url(1) }}">1</a></li>
+                    <li class="page-item"><a class="page-link" href="{{ $riwayat_pemilikans->url(1) }}">1</a></li>
                     @if ($start > 2)
                         <li class="page-item disabled"><span class="page-link">...</span></li>
                     @endif
@@ -90,7 +86,7 @@
 
                 @foreach(range($start, $end) as $page)
                     <li class="page-item {{ ($currentPage == $page) ? 'active' : '' }}">
-                        <a class="page-link" href="{{ $riwayatPemilikan->url($page) }}">{{ $page }}</a>
+                        <a class="page-link" href="{{ $riwayat_pemilikans->url($page) }}">{{ $page }}</a>
                     </li>
                 @endforeach
 
@@ -98,11 +94,11 @@
                     @if ($end < $lastPage - 1)
                         <li class="page-item disabled"><span class="page-link">...</span></li>
                     @endif
-                    <li class="page-item"><a class="page-link" href="{{ $riwayatPemilikan->url($lastPage) }}">{{ $lastPage }}</a></li>
+                    <li class="page-item"><a class="page-link" href="{{ $riwayat_pemilikans->url($lastPage) }}">{{ $lastPage }}</a></li>
                 @endif
 
-                @if ($riwayatPemilikan->hasMorePages())
-                    <li class="page-item"><a class="page-link" href="{{ $riwayatPemilikan->nextPageUrl() }}">&raquo;</a></li>
+                @if ($riwayat_pemilikans->hasMorePages())
+                    <li class="page-item"><a class="page-link" href="{{ $riwayat_pemilikans->nextPageUrl() }}">&raquo;</a></li>
                 @else
                     <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
                 @endif

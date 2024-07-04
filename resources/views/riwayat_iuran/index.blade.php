@@ -32,8 +32,6 @@
                         <th>Tahun Bulan</th>
                         <th>Jumlah Bayar</th>
                         <th>Tanggal Bayar</th>
-                        <th>Created By</th>
-                        <th>Edited By</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -45,8 +43,6 @@
                             <td>{{ $iuran->tahun_bulan }}</td>
                             <td>{{ $iuran->jml_bayar }}</td>
                             <td>{{ $iuran->tgl_bayar }}</td>
-                            <td>{{ $iuran->created_by }}</td>
-                            <td>{{ $iuran->edited_by }}</td>
                             <td>
                                 <a class="btn btn-primary btn-sm" href="{{ route('riwayat_iuran.show', $iuran->id) }}">Show</a>
                                 <a class="btn btn-secondary btn-sm" href="{{ route('riwayat_iuran.edit', $iuran->id) }}">Edit</a>

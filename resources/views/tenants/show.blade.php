@@ -55,11 +55,11 @@
             </table>
             <div class="d-flex justify-content-between">
                 <div>
-                    <a href="{{ route('tenant.index') }}" class="btn btn-primary">Kembali</a>
+                    <a href="{{ route('tenants.index') }}" class="btn btn-primary">Kembali</a>
                 </div>
                 <div>
-                    <a class="btn btn-secondary" href="{{ route('tenant.edit', $tenant->id) }}">Edit</a>
-                    <form action="{{ route('tenant.destroy', $tenant->id) }}" method="POST" class="d-inline">
+                    <a class="btn btn-secondary" href="{{ route('tenants.edit', $tenant->id) }}">Edit</a>
+                    <form action="{{ route('tenants.destroy', $tenant->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger"

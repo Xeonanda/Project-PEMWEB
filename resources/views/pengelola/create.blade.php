@@ -19,12 +19,17 @@
                 @endif
                 @csrf
                 <div class="form-group">
-                    <label for="id_user">User ID</label>
+                    <label for="id_user">ID User</label>
                     <input type="number" name="id_user" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="id_pasar">Pasar ID</label>
-                    <input type="number" name="id_pasar" class="form-control" required>
+                    <label for="id_pasar">ID Pasar</label>
+                    <select name="id_pasar" class="form-control" required>
+                        <option value="">Pilih Pasar</option>
+                        @foreach($pasars as $pasar)
+                            <option value="{{ $pasar->id }}">{{ $pasar->nama }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="created_by">Created By</label>

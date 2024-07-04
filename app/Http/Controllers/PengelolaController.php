@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengelola;
+use App\Models\Pasar;
 use Illuminate\Http\Request;
 use App\Exports\PengelolaExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -27,7 +28,8 @@ class PengelolaController extends Controller
 
     public function create()
     {
-        return view('pengelola.create');
+        $pasars = Pasar::all();
+        return view('pengelola.create', compact('pasars'));
     }
 
     public function store(Request $request)
@@ -57,7 +59,8 @@ class PengelolaController extends Controller
      */
     public function edit(Pengelola $pengelola)
     {
-        return view('pengelola.edit', compact('pengelola'));
+        $pasars = Pasar::all();
+        return view('pengelola.edit', compact('pengelola', 'pasars'));
     }
 
     /**

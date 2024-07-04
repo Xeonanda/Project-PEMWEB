@@ -62,9 +62,9 @@ class RiwayatIuranController extends Controller
     }
 
 
-    public function show(RiwayatIuran $riwayatIuran)
+    public function show(RiwayatIuran $riwayat_iuran)
     {
-        //
+        return view('riwayat_iuran.show', compact('riwayat_iuran'));
     }
 
     public function edit(RiwayatIuran $riwayatIuran)

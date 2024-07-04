@@ -88,8 +88,8 @@ class TenantController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'id_pemilik' => 'required|integer',
-            'latitude_tenant' => 'required|numeric',
-            'longitude_tenant' => 'required|numeric',
+            'latitude_tenant' => 'required|numeric|between:-90,90',
+            'longitude_tenant' => 'required|numeric|between:-180,180',
             'harga_iuran' => 'required|numeric',
             'id_pasar' => 'required|integer',
             'created_by' => 'required|string|max:255',

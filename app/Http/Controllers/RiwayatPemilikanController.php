@@ -73,7 +73,7 @@ class RiwayatPemilikanController extends Controller
      */
     public function show(riwayat_pemilikan $riwayat_pemilikan)
     {
-
+        return view('riwayat_pemilikan.show', compact('riwayat_pemilikan'));
     }
 
     /**

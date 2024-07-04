@@ -29,15 +29,15 @@
                     </div>
                     <div class="form-group">
                         <label for="nik">NIK</label>
-                        <input type="text" name="nik" class="form-control" value="{{ $pemilik->nik }}" required>
+                        <input type="number" name="nik" class="form-control" value="{{ $pemilik->nik }}" required>
                     </div>
                     <div class="form-group">
                         <label for="no_wa">No WA</label>
-                        <input type="text" name="no_wa" class="form-control" value="{{ $pemilik->no_wa }}" required>
+                        <input type="number" name="no_wa" class="form-control" value="{{ $pemilik->no_wa }}" required>
                     </div>
                     <div class="form-group">
                         <label for="no_telp">No Telp</label>
-                        <input type="text" name="no_telp" class="form-control" value="{{ $pemilik->no_telp }}" required>
+                        <input type="number" name="no_telp" class="form-control" value="{{ $pemilik->no_telp }}" required>
                     </div>
                     <div class="form-group">
                         <label for="created_by">Created By</label>
