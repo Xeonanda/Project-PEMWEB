@@ -10,8 +10,19 @@ use App\Http\Controllers\RiwayatIuranController;
 use App\Http\Controllers\KonfigurasiController;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', [KonfigurasiController::class, 'index'])->name('konfigurasi');
+Route::get('/', function(){
+    return view('home');
+})->name('home');
 
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+Route::resource('konfigurasi', KonfigurasiController::class);
 //Pemilik
 Route::resource('pemilik', PemilikController::class);
 

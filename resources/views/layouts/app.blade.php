@@ -31,9 +31,7 @@
             justify-content: center;
             align-items: center;
             border-bottom: 2px solid #6c757d;
-            /* Adding a bottom border */
             padding-bottom: 10px;
-            /* Adjust space below icon */
         }
 
         .icon img {
@@ -101,6 +99,8 @@
 
 <body>
     <div id="app">
+        @if (Route::currentRouteName() != 'home')
+
         <nav class="d-flex flex-column bg-secondary">
             <a href="#" class="icon">
                 <img src="{{ asset('images/logo.png') }}" alt="Icon">
@@ -137,6 +137,7 @@
                 {{-- @endauth --}}
             </ul>
         </nav>
+        @endif
 
         <div class="content p-4">
             @yield('content')
