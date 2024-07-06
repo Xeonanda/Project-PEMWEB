@@ -7,15 +7,27 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\tenant;
 use App\Models\Pemilik;
+use App\Exports\RiwayatPemilikanExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class RiwayatPemilikanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $riwayat_pemilikans = Riwayat_pemilikan::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = riwayat_pemilikan::query();
+
+        if (!empty($search)) {
+            $query->where('id_tenant', 'like', '%' . $search . '%')->orWhere('tgl_transaksi', 'like', '%' . $search . '%')->orWhere('id_pemilik_lama', 'like', '%' . $search . '%')->orWhere('id_pemilik_baru', 'like', '%' . $search . '%');
+        }
+
+        $riwayat_pemilikans = $query->paginate($perPage);
         return view('riwayat_pemilikan.index', compact('riwayat_pemilikans'));
     }
 
@@ -61,7 +73,7 @@ class RiwayatPemilikanController extends Controller
      */
     public function show(riwayat_pemilikan $riwayat_pemilikan)
     {
-
+        return view('riwayat_pemilikan.show', compact('riwayat_pemilikan'));
     }
 
     /**
@@ -111,5 +123,12 @@ class RiwayatPemilikanController extends Controller
     {
         $riwayat_pemilikan->delete();
         return redirect()->route('riwayat_pemilikan.index')->with('success', 'Riwayat Pemilikan deleted successfully');
+    }
+
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "RiwayatPemilikan_{$timestamp}.xlsx";
+        return Excel::download(new RiwayatPemilikanExport($request), $fileName);
     }
 }

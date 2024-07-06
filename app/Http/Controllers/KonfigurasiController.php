@@ -4,15 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Konfigurasi;
 use Illuminate\Http\Request;
+use App\Exports\KonfigurasisExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class KonfigurasiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $konfigurasis = Konfigurasi::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = Konfigurasi::query();
+
+        if (!empty($search)) {
+            $query->where('name', 'like', '%' . $search . '%')->orWhere('value', 'like', '%' . $search . '%');
+        }
+
+        $konfigurasis = $query->paginate($perPage);
         return view('konfigurasi.index', compact('konfigurasis'));
     }
 
@@ -81,4 +93,12 @@ class KonfigurasiController extends Controller
         return redirect()->route('konfigurasi.index')
                          ->with('success', 'Konfigurasi deleted successfully.');
     }
+
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "Konfigurasi_{$timestamp}.xlsx";
+        return Excel::download(new KonfigurasisExport($request), $fileName);
+    }
+
 }

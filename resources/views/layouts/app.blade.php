@@ -40,7 +40,7 @@
         }
 
         nav {
-            flex: 0 0 200px;
+            flex: 0 0 350px;
             background-color: #343a40;
             color: white;
         }
@@ -75,7 +75,11 @@
             align-items: center;
             justify-content: center;
             margin-top: auto;
-            padding-top: 160px;
+            flex-direction: column;
+            width: 100%;
+            height: 20%;
+            font-size: 24px;
+            border-top: 3px solid #e3e3e3;
         }
 
         .logout-btn {
@@ -91,8 +95,14 @@
 
         .logout-btn:hover {
             background-color: rgb(220, 220, 220);
-            color: #495057
+            color: #495057;
             transform: scale(1.1);
+        }
+
+        nav .logo-underline {
+            width: 100%;
+            border-bottom: 3px solid #e3e3e3;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -105,7 +115,8 @@
             <a href="#" class="icon">
                 <img src="{{ asset('images/logo.png') }}" alt="Icon">
             </a>
-            <ul class="nav flex-column">
+            <div class="logo-underline"></div>
+            <ul class="nav flex-column flex-grow-1">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('konfigurasi.index') }}">Konfigurasi</a>
                 </li>
@@ -128,10 +139,11 @@
                     <a class="nav-link" href="{{ route('pengelola.index') }}">Pengelola</a>
                 </li>
                 {{-- @auth --}}
-                <li class="logout">
+                <li class="nav-item mt-auto logout">
+                    <p>Welcome, Joko</p>
                     <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-darl logout-btn">Logout</button>
+                        @csrf
+                        <button type="submit" class="btn btn-darl logout-btn">Logout</button>
                     </form>
                 </li>
                 {{-- @endauth --}}

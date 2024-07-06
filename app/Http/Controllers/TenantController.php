@@ -6,15 +6,27 @@ use App\Models\tenant;
 use Illuminate\Http\Request;
 use App\Models\Pemilik;
 use App\Models\Pasar;
+use App\Exports\TenantExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class TenantController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tenants = Tenant::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = tenant::query();
+
+      $query->where('nama', 'like', '%' . $search . '%')->orWhere('id_pemilik', 'like', '%' . $search . '%')->orWhere('harga_iuran', 'like', '%' . $search . '%')->orWhere('id_pasar', 'like', '%' . $search . '%');  if (!empty($search)) {
+
+        }
+
+        $tenants = $query->paginate($perPage);
         return view('tenants.index', compact('tenants'));
     }
 
@@ -76,8 +88,8 @@ class TenantController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'id_pemilik' => 'required|integer',
-            'latitude_tenant' => 'required|numeric',
-            'longitude_tenant' => 'required|numeric',
+            'latitude_tenant' => 'required|numeric|between:-90,90',
+            'longitude_tenant' => 'required|numeric|between:-180,180',
             'harga_iuran' => 'required|numeric',
             'id_pasar' => 'required|integer',
             'created_by' => 'required|string|max:255',
@@ -97,5 +109,12 @@ class TenantController extends Controller
         $tenant->delete();
         return redirect()->route('tenants.index')
                          ->with('success', 'Tenant deleted successfully.');
+    }
+
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "Tenant_{$timestamp}.xlsx";
+        return Excel::download(new TenantExport($request), $fileName);
     }
 }

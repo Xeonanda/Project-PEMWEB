@@ -4,15 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Pemilik;
 use Illuminate\Http\Request;
+use App\Exports\PemilikExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class PemilikController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pemilik = Pemilik::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = Pemilik::query();
+
+        if (!empty($search)) {
+            $query->where('nama', 'like', '%' . $search . '%')->orWhere('alamat', 'like', '%' . $search . '%')->orWhere('nik', 'like', '%' . $search . '%')->orWhere('no_wa', 'like', '%' . $search . '%')->orWhere('no_telp', 'like', '%' . $search . '%');
+        }
+
+        $pemilik = $query->paginate($perPage);
         return view('pemilik.index', compact('pemilik'));
     }
 
@@ -86,5 +98,11 @@ class PemilikController extends Controller
         $pemilik->delete();
         return redirect()->route('pemilik.index')
                          ->with('success', 'Pemilik deleted successfully.');
+    }
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "Pemilik_{$timestamp}.xlsx";
+        return Excel::download(new PemilikExport($request), $fileName);
     }
 }

@@ -6,12 +6,24 @@ use App\Models\RiwayatIuran;
 use App\Models\tenant;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Exports\RiwayatIuranExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class RiwayatIuranController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $riwayat_iuran = RiwayatIuran::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = RiwayatIuran::query();
+
+        if (!empty($search)) {
+            $query->where('id_tenant', 'like', '%' . $search . '%')->orWhere('tahun_bulan', 'like', '%' . $search . '%')->orWhere('jml_bayar', 'like', '%' . $search . '%')->orWhere('tgl_bayar', 'like', '%' . $search . '%');
+        }
+
+        $riwayat_iuran = $query->paginate($perPage);
         return view('riwayat_iuran.index', compact('riwayat_iuran'));
     }
 
@@ -50,9 +62,9 @@ class RiwayatIuranController extends Controller
     }
 
 
-    public function show(RiwayatIuran $riwayatIuran)
+    public function show(RiwayatIuran $riwayat_iuran)
     {
-        //
+        return view('riwayat_iuran.show', compact('riwayat_iuran'));
     }
 
     public function edit(RiwayatIuran $riwayatIuran)
@@ -94,5 +106,12 @@ class RiwayatIuranController extends Controller
     {
         $riwayatIuran->delete();
         return redirect()->route('riwayat_iuran.index')->with('success', 'Riwayat Iuran deleted successfully');
+    }
+
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "RiwayatIuran_{$timestamp}.xlsx";
+        return Excel::download(new RiwayatIuranExport($request), $fileName);
     }
 }

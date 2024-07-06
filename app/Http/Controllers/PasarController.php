@@ -3,12 +3,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasar;
+use App\Exports\PasarsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class PasarController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pasar = Pasar::all();
+        $perPage = $request->query('perPage', 10);
+        $search = $request->query('search');
+
+        $query = Pasar::query();
+
+        if (!empty($search)) {
+            $query->where('nama', 'like', '%' . $search . '%')->orWhere('alamat', 'like', '%' . $search . '%')->orWhere('kode_pasar', 'like', '%' . $search . '%');
+        }
+
+        $pasar = $query->paginate($perPage);
         return view('pasar.index', compact('pasar'));
     }
 
@@ -26,10 +38,10 @@ class PasarController extends Controller
             'created_by' => 'required|string|max:255',
         ]);
 
-        Pasar::create($request->all());  
+        Pasar::create($request->all());
         return redirect()->route('pasar.index')
                          ->with('success', 'Pasar created successfully.');
-        
+
     }
 
      /**
@@ -73,6 +85,13 @@ class PasarController extends Controller
         $pasar->delete();
         return redirect()->route('pasar.index')
                          ->with('success', 'Pasar deleted successfully.');
+    }
+
+    public function export(Request $request)
+    {
+        $timestamp = Carbon::now()->format('Y_m_d');
+        $fileName = "Pasar_{$timestamp}.xlsx";
+        return Excel::download(new PasarsExport($request), $fileName);
     }
 }
 

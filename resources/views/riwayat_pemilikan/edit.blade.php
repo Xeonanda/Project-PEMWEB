@@ -3,9 +3,11 @@
 @section('title', 'Edit Riwayat Pemilikan')
 
 @section('content')
-    <div class="container">
-        <h1 class="mt-4">Edit Riwayat Pemilikan</h1>
-        <form action="{{ route('riwayat_pemilikan.update', $riwayat_pemilikan->id) }}" method="POST">
+<div class="container">
+    <h1 class="mt-4">Edit Riwayat Pemilikan</h1>
+        <div class="card">
+            <div class="card-body">
+            <form action="{{ route('riwayat_pemilikan.update', $riwayat_pemilikan->id) }}" method="POST">
             @csrf
             @method('PUT')
             @if ($errors->any())
@@ -30,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="tgl_transaksi">Tanggal Transaksi</label>
-                <input type="date" name="tgl_transaksi" class="form-control" value="{{ isset($riwayat_pemilikan) ? $riwayat_pemilikan->tgl_transaksi : old('tgl_transaksi') }}" required>
+                <input type="date" name="tgl_transaksi" class="form-control" value="{{ $riwayat_pemilikan->tgl_transaksi}}" required>
             </div>
             <div class="form-group">
                 <label for="id_pemilik_lama">ID Pemilik Lama</label>
@@ -56,13 +58,15 @@
             </div>
             <div class="form-group">
                 <label for="created_by">Created By</label>
-                <input type="text" name="created_by" class="form-control" value="{{ $riwayat_pemilikan->created_by }}" required>
+                <input type="text" name="created_by" class="form-control" value="{{ $riwayat_pemilikan->created_by}}" required>
             </div>
             <div class="form-group">
                 <label for="edited_by">Edited By</label>
-                <input type="text" name="edited_by" class="form-control" value="{{ $riwayat_pemilikan->edited_by ?? old('edited_by') }}" required>
+                <input type="text" name="edited_by" class="form-control" value="{{ $riwayat_pemilikan->edited_by}}" required>
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
+</div>
+</div>
 @endsection
