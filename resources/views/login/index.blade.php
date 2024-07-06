@@ -49,7 +49,7 @@
                         </form>
                     </div>
                     <div class="p-6 text-center block text-gray-900">
-                        <p>Belum punya akun? <a href="/register" class="text-blue-500">Daftar, yuk!</a></p>
+                        <p>Belum punya akun? <a href="{{ route('register') }}" class="text-blue-500">Daftar, yuk!</a></p>
                     </div>
                 </div>
             </div>

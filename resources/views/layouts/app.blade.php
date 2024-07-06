@@ -40,7 +40,7 @@
         }
 
         nav {
-            flex: 0 0 350px;
+            flex: 0 0 280px;
             background-color: #343a40;
             color: white;
         }
@@ -99,6 +99,11 @@
             transform: scale(1.1);
         }
 
+        .message {
+            font-size: 18px;
+            margin-bottom: 14px;
+        }
+
         nav .logo-underline {
             width: 100%;
             border-bottom: 3px solid #e3e3e3;
@@ -140,7 +145,7 @@
                 </li>
                 {{-- @auth --}}
                 <li class="nav-item mt-auto logout">
-                    <p>Welcome, Joko</p>
+                    <p class="message">Welcome, {{ Auth::user()->name }}</p>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="btn btn-darl logout-btn">Logout</button>
