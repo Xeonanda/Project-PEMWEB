@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RegisterController;
 
 Route::get('/', function(){
+    if (Auth::check()){
+        return redirect()->route('konfigurasi.index');
+    }
     return view('home');
 })->name('home');
 
