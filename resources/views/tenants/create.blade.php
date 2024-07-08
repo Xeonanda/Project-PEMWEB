@@ -33,11 +33,11 @@
                 </div>
                 <div class="form-group">
                     <label for="latitude_tenant">Latitude Tenant</label>
-                    <input type="number" name="latitude_tenant" class="form-control" required>
+                    <input type="number" name="latitude_tenant" class="form-control" step="0.000001" required>
                 </div>
                 <div class="form-group">
                     <label for="longitude_tenant">Longitude Tenant</label>
-                    <input type="number" name="longitude_tenant" class="form-control" required>
+                    <input type="number" name="longitude_tenant" class="form-control" step="0.000001" required>
                 </div>
                 <div class="form-group">
                     <label for="harga_iuran">Harga Iuran</label>
