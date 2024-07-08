@@ -76,7 +76,7 @@ class KonfigurasiController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'value'=> 'required|string|',
-            'created_by' => 'required|string|max:255',
+            'edited_by' => 'required|string|max:255',
         ]);
 
         $konfigurasi->update($request->all());
