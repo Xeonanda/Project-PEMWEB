@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mt-4">Detail Konfigurasi Pengelola</h1>
+    <h1 class="mt-4">Detail Pengelola</h1>
     <div class="card">
         <div class="card-body">
             <table class="table table-bordered">
