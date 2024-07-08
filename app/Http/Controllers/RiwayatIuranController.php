@@ -94,7 +94,6 @@ class RiwayatIuranController extends Controller
         $riwayatIuran->tahun_bulan = $tahunBulan;
         $riwayatIuran->jml_bayar = $request->jml_bayar;
         $riwayatIuran->tgl_bayar = $request->tgl_bayar;
-        $riwayatIuran->created_by = $request->created_by;
         $riwayatIuran->edited_by = $request->edited_by;
         $riwayatIuran->save();
 
