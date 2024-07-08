@@ -35,12 +35,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="created_by">Created By</label>
-                        <input type="text" name="created_by" class="form-control" value="{{ $pengelola->created_by }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="edited_by">Edited By</label>
-                        <input type="text" name="edited_by" class="form-control" value="{{ $pengelola->edited_by }}" placeholder="Leave blank if not edited">
+                        <input type="hidden" name="edited_by" class="form-control" value="{{ Auth::user()->name }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>

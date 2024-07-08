@@ -81,7 +81,6 @@ class RiwayatIuranController extends Controller
             'bulan' => 'required|string',
             'jml_bayar' => 'required|numeric',
             'tgl_bayar' => 'required|date_format:Y-m-d',
-            'created_by' => 'required|string|max:255',
             'edited_by' => 'required|string|max:255'
         ]);
 

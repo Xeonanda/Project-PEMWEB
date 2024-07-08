@@ -28,7 +28,7 @@
                     <input type="number" name="value" class="form-control" value="{{ $konfigurasi->value}}" required>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="edited_by" class="form-control" value="{{ Auth::user()->email }}">
+                    <input type="hidden" name="edited_by" class="form-control" value="{{ Auth::user()->name }}">
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>

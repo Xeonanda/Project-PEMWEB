@@ -64,12 +64,7 @@
                     <input type="date" name="tgl_bayar" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="created_by">Created By</label>
-                    <input type="text" name="created_by" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="edited_by">Edited By</label>
-                    <input type="text" name="edited_by" class="form-control">
+                    <input type="hidden" name="created_by" class="form-control" value="{{ Auth::user()->name }}">
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>

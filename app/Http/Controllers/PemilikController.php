@@ -82,7 +82,7 @@ class PemilikController extends Controller
             'nik' => 'required|numeric',
             'no_wa' => 'required|numeric',
             'no_telp' => 'required|numeric',
-            'created_by' => 'required|string',
+            'edited_by' => 'required|string',
         ]);
 
         $pemilik->update($request->all());

@@ -40,12 +40,7 @@
                         <input type="number" name="no_telp" class="form-control" value="{{ $pemilik->no_telp }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="created_by">Created By</label>
-                        <input type="text" name="created_by" class="form-control" value="{{ $pemilik->created_by }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="edited_by">Edited By</label>
-                        <input type="text" name="edited_by" class="form-control" value="{{ $pemilik->edited_by }}" required>
+                        <input type="hidden" name="edited_by" class="form-control" value="{{ Auth::user()->name }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>

@@ -92,7 +92,6 @@ class TenantController extends Controller
             'longitude_tenant' => 'required|numeric|between:-180,180',
             'harga_iuran' => 'required|numeric',
             'id_pasar' => 'required|integer',
-            'created_by' => 'required|string|max:255',
             'edited_by' => 'required|string|max:255',
         ]);
 

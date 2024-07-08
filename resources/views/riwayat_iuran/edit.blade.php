@@ -70,12 +70,7 @@
                 <input type="date" name="tgl_bayar" class="form-control" value="{{ $riwayatIuran->tgl_bayar }}" required>
             </div>
             <div class="form-group">
-                <label for="created_by">Created By</label>
-                <input type="text" name="created_by" class="form-control" value="{{ $riwayatIuran->created_by }}" required>
-            </div>
-            <div class="form-group">
-                <label for="edited_by">Edited By</label>
-                <input type="text" name="edited_by" class="form-control" value="{{ $riwayatIuran->edited_by }}" required>
+                <input type="hidden" name="edited_by" class="form-control" value="{{ Auth::user()->name }}">
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>

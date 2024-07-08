@@ -97,7 +97,6 @@ class RiwayatPemilikanController extends Controller
             'tgl_transaksi' => 'required|date_format:Y-m-d',
             'id_pemilik_lama' => 'required|numeric',
             'id_pemilik_baru' => 'required|numeric',
-            'created_by' => 'required|string|max:255',
             'edited_by' => 'required|string|max:255'
         ]);
 

@@ -69,7 +69,7 @@ class PasarController extends Controller
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'kode_pasar' => 'required|string|max:255',
-            'created_by' => 'required|string|max:255',
+            'edited_by' => 'required|string|max:255',
         ]);
 
         $pasar->update($request->all());

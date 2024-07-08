@@ -71,7 +71,7 @@ class PengelolaController extends Controller
         $request->validate([
             'id_user' => 'required|numeric',
             'id_pasar' => 'required|numeric',
-            'created_by' => 'required|string|max:255',
+            'edited_by' => 'required|string|max:255',
         ]);
 
         $pengelola->update($request->all());

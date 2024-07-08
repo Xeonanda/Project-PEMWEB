@@ -53,8 +53,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="created_by">Created By</label>
-                    <input type="text" name="created_by" class="form-control" required>
+                    <input type="hidden" name="created_by" class="form-control" value="{{ Auth::user()->name }}">
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>
