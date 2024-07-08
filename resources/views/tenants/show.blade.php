@@ -58,6 +58,7 @@
                     <a href="{{ route('tenants.index') }}" class="btn btn-primary">Kembali</a>
                 </div>
                 <div>
+                    <a href='https://www.google.com/maps/search/?api=1&query={{ $tenant->latitude_tenant }},{{ $tenant->longitude_tenant}}' target='_blank' class='btn btn-primary'>Cek Lokasi di Google Maps</a>
                     <a class="btn btn-secondary" href="{{ route('tenants.edit', $tenant->id) }}">Edit</a>
                     <form action="{{ route('tenants.destroy', $tenant->id) }}" method="POST" class="d-inline">
                         @csrf
