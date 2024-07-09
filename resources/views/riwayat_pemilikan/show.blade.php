@@ -14,7 +14,7 @@
                 </tr>
                 <tr>
                     <th>ID Tenant</th>
-                    <td>{{ $riwayat_pemilikan->id_tenant }}</td>
+                    <td>{{ $riwayat_pemilikan->tenant->nama }}</td>
                 </tr>
                 <tr>
                     <th>Tanggal Transaksi</th>
@@ -22,11 +22,11 @@
                 </tr>
                 <tr>
                     <th>ID Pemilik Lama</th>
-                    <td>{{ $riwayat_pemilikan->id_pemilik_lama }}</td>
+                    <td>{{ $riwayat_pemilikan->pemilikLama ? $riwayat_pemilikan->pemilikLama->nama : 'Pemilik lama tidak ditemukan' }}</td>
                 </tr>
                 <tr>
                     <th>ID Pemilik Baru</th>
-                    <td>{{ $riwayat_pemilikan->id_pemilik_baru }}</td>
+                    <td>{{ $riwayat_pemilikan->pemilikBaru ? $riwayat_pemilikan->pemilikBaru->nama : 'Pemilik baru tidak ditemukan' }}</td>
                 </tr>
                 <tr>
                     <th>Created By</th>

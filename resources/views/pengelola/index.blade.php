@@ -38,7 +38,7 @@
                             <tr>
                                 <td>{{ $p->id }}</td>
                                 <td>{{ $p->id_user }}</td>
-                                <td>{{ $p->id_pasar }}</td>
+                                <td>{{ $p->pasar->nama }}</td>
                                 <td>
                                     <a class="btn btn-primary btn-sm" href="{{ route('pengelola.show', $p->id) }}">Show</a>
                                     <a class="btn btn-secondary btn-sm" href="{{ route('pengelola.edit', $p->id) }}">Edit</a>

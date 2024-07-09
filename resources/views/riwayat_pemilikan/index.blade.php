@@ -39,10 +39,10 @@
                     @foreach ($riwayat_pemilikans as $rp)
                         <tr>
                             <td>{{ $rp->id }}</td>
-                            <td>{{ $rp->id_tenant }}</td>
+                            <td>{{ $rp->tenant->nama }}</td>
                             <td>{{ $rp->tgl_transaksi }}</td>
-                            <td>{{ $rp->id_pemilik_lama }}</td>
-                            <td>{{ $rp->id_pemilik_baru }}</td>
+                            <td>{{ $rp->pemilikLama ? $rp->pemilikLama->nama : 'Pemilik lama tidak ditemukan' }}</td>
+                            <td>{{ $rp->pemilikBaru ? $rp->pemilikBaru->nama : 'Pemilik baru tidak ditemukan' }}</td>
                             <td>
                                 <a class="btn btn-primary btn-sm" href="{{ route('riwayat_pemilikan.show', $rp->id) }}">Show</a>
                                 <a class="btn btn-secondary btn-sm" href="{{ route('riwayat_pemilikan.edit', $rp->id) }}">Edit</a>

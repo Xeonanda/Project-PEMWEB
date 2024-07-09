@@ -42,11 +42,11 @@
                         <tr>
                             <td>{{ $tenant->id }}</td>
                             <td>{{ $tenant->nama }}</td>
-                            <td>{{ $tenant->id_pemilik }}</td>
+                            <td>{{ $tenant->pemilik->nama }}</td>
                             <td>{{ $tenant->latitude_tenant }}</td>
                             <td>{{ $tenant->longitude_tenant }}</td>
                             <td>{{ $tenant->harga_iuran }}</td>
-                            <td>{{ $tenant->id_pasar }}</td>
+                            <td>{{ $tenant->pasar->nama }}</td>
                             <td>
                                 <a class="btn btn-primary btn-sm" href="{{ route('tenants.show', $tenant->id) }}">Show</a>
                                 <a class="btn btn-secondary btn-sm" href="{{ route('tenants.edit', $tenant->id) }}">Edit</a>

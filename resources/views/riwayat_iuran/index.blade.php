@@ -39,7 +39,7 @@
                     @foreach ($riwayat_iuran as $iuran)
                         <tr>
                             <td>{{ $iuran->id }}</td>
-                            <td>{{ $iuran->id_tenant }}</td>
+                            <td>{{ $iuran->tenant->nama }}</td>
                             <td>{{ $iuran->tahun_bulan }}</td>
                             <td>{{ $iuran->jml_bayar }}</td>
                             <td>{{ $iuran->tgl_bayar }}</td>

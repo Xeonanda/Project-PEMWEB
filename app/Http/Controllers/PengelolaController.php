@@ -16,10 +16,14 @@ class PengelolaController extends Controller
         $perPage = $request->query('perPage', 10);
         $search = $request->query('search');
 
-        $query = Pengelola::query();
+        $query = Pengelola::query()->with('pasar');
 
         if (!empty($search)) {
-            $query->where('id_user', 'like', '%' . $search . '%')->orWhere('id_pasar', 'like', '%' . $search . '%');
+            $query->where('id_user', 'like', '%' . $search . '%')
+                ->orWhere('id_pasar', 'like', '%' . $search . '%')
+                ->orWhereHas('pasar', function ($q) use ($search) {
+                    $q->where('nama', 'like', '%' . $search . '%');
+                });
         }
 
         $pengelola = $query->paginate($perPage);

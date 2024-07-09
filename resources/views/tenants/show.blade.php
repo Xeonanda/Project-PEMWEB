@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                     <th>ID Pemilik</th>
-                    <td>{{ $tenant->id_pemilik }}</td>
+                    <td>{{ $tenant->pemilik->nama }}</td>
                 </tr>
                 <tr>
                     <th>Latitude</th>
@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                     <th>ID Pasar</th>
-                    <td>{{ $tenant->id_pasar }}</td>
+                    <td>{{ $tenant->pasar->nama }}</td>
                 </tr>
                 <tr>
                     <th>Created By</th>

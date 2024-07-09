@@ -14,7 +14,7 @@
                 </tr>
                 <tr>
                     <th>ID Tenant</th>
-                    <td>{{ $riwayat_iuran->id_tenant }}</td>
+                    <td>{{ $riwayat_iuran->tenant->nama }}</td>
                 </tr>
                 <tr>
                     <th>Tahun Bulan</th>

@@ -21,10 +21,17 @@ class RiwayatPemilikanController extends Controller
         $perPage = $request->query('perPage', 10);
         $search = $request->query('search');
 
-        $query = riwayat_pemilikan::query();
+        $query = riwayat_pemilikan::with(['pemilikLama', 'pemilikBaru']);
 
         if (!empty($search)) {
-            $query->where('id_tenant', 'like', '%' . $search . '%')->orWhere('tgl_transaksi', 'like', '%' . $search . '%')->orWhere('id_pemilik_lama', 'like', '%' . $search . '%')->orWhere('id_pemilik_baru', 'like', '%' . $search . '%');
+            $query->where('id_tenant', 'like', '%' . $search . '%')
+                ->orWhere('tgl_transaksi', 'like', '%' . $search . '%')
+                ->orWhereHas('pemilikLama', function ($q) use ($search) {
+                    $q->where('nama', 'like', '%' . $search . '%');
+                })
+                ->orWhereHas('pemilikBaru', function ($q) use ($search) {
+                    $q->where('nama', 'like', '%' . $search . '%');
+                });
         }
 
         $riwayat_pemilikans = $query->paginate($perPage);
@@ -108,7 +115,6 @@ class RiwayatPemilikanController extends Controller
         $riwayatPemilikan->tgl_transaksi = $request->tgl_transaksi;
         $riwayatPemilikan->id_pemilik_lama = $request->id_pemilik_lama;
         $riwayatPemilikan->id_pemilik_baru = $request->id_pemilik_baru;
-        $riwayatPemilikan->created_by = $request->created_by;
         $riwayatPemilikan->edited_by = $request->edited_by;
         $riwayatPemilikan->save();
 

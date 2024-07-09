@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                     <th>ID Pasar</th>
-                    <td>{{ $pengelola->id_pasar }}</td>
+                    <td>{{ $pengelola->pasar->nama }}</td>
                 </tr>
                 <tr>
                     <th>Created By</th>

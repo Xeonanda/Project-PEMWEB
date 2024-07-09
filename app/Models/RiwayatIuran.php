@@ -11,6 +11,10 @@ class RiwayatIuran extends Model
 
     protected $table = 'riwayat_iuran';
 
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, 'id_tenant');
+    }
     protected $fillable = [
         'id_tenant',
         'tahun_bulan',

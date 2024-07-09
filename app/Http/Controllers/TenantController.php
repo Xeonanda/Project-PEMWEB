@@ -20,10 +20,19 @@ class TenantController extends Controller
         $perPage = $request->query('perPage', 10);
         $search = $request->query('search');
 
-        $query = tenant::query();
+        $query = Tenant::query()->with('pasar', 'pemilik');
 
-      $query->where('nama', 'like', '%' . $search . '%')->orWhere('id_pemilik', 'like', '%' . $search . '%')->orWhere('harga_iuran', 'like', '%' . $search . '%')->orWhere('id_pasar', 'like', '%' . $search . '%');  if (!empty($search)) {
-
+        if (!empty($search)) {
+            $query->where('nama', 'like', '%' . $search . '%')
+                ->orWhere('id_pemilik', 'like', '%' . $search . '%')
+                ->orWhere('harga_iuran', 'like', '%' . $search . '%')
+                ->orWhere('id_pasar', 'like', '%' . $search . '%')
+                ->orWhereHas('pasar', function ($q) use ($search) {
+                    $q->where('nama', 'like', '%' . $search . '%');
+                })
+                ->orWhereHas('pemilik', function ($q) use ($search) {
+                    $q->where('nama', 'like', '%' . $search . '%');
+                });
         }
 
         $tenants = $query->paginate($perPage);

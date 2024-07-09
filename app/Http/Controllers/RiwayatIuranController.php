@@ -17,10 +17,16 @@ class RiwayatIuranController extends Controller
         $perPage = $request->query('perPage', 10);
         $search = $request->query('search');
 
-        $query = RiwayatIuran::query();
+        $query = RiwayatIuran::with('tenant');
 
         if (!empty($search)) {
-            $query->where('id_tenant', 'like', '%' . $search . '%')->orWhere('tahun_bulan', 'like', '%' . $search . '%')->orWhere('jml_bayar', 'like', '%' . $search . '%')->orWhere('tgl_bayar', 'like', '%' . $search . '%');
+            $query->where('id_tenant', 'like', '%' . $search . '%')
+                ->orWhere('tahun_bulan', 'like', '%' . $search . '%')
+                ->orWhere('jml_bayar', 'like', '%' . $search . '%')
+                ->orWhere('tgl_bayar', 'like', '%' . $search . '%')
+                ->orWhereHas('tenant', function ($q) use ($search) {
+                    $q->where('nama', 'like', '%' . $search . '%');
+                });
         }
 
         $riwayat_iuran = $query->paginate($perPage);
